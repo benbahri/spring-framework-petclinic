@@ -1,0 +1,5 @@
+services:
+  petclinic:
+    image: mtbsoft/petclinic:latest
+    ports:
+      - "9090:8080"
