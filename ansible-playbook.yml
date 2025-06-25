@@ -1,0 +1,20 @@
+---
+- name: Deploy petclinic app via docker compose
+  hosts: staging
+  become: yes
+  vars:
+    project_dir: "/opt/petclinic"
+  tasks:
+  - name: Create project dir
+    file:
+      path: "{{ project_dir }}"
+      state: directory
+  - name: Copy docker-compose
+    copy:
+      src: docker-compose.yml
+      dest: "{{ project_dir }}/"
+  - name: run docker compose 
+    command: 
+      cmd: docker compose up -d
+      chdir: "{{ project_dir }}"
+
